@@ -68,6 +68,7 @@ The array of companies to set on the contact. Each value will be validated depen
 {
   "id": 33884,
   "firstName": "Bobby",
+  "unsubscribe": true,
   "groups": [
     {
       "groupId": 10
@@ -94,6 +95,7 @@ The array of companies to set on the contact. Each value will be validated depen
 {
   "id":33884,
   "firstName":"Bobby",
+  "unsubscribe":true,
   "groups":[{"groupId":10}],
   "customFields":[{"fieldId":33443,"value":"No"}],
   "companies":[4,5]
@@ -113,6 +115,8 @@ The properties of the contact currently supported are:
 * lastName
 * email
 * phone
+* unsubscribe
+  * The contact to unsubscribe for Email and SMS
 * groups
   * This is an array of group objects with the ‘groupId’ key.
 * customFields
