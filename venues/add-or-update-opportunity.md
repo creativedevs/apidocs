@@ -31,7 +31,8 @@ The unique company id of opportunity
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="industryId" type="integer" required=false %}
-The unique industry id of opportunity
+The unique industry id of opportunity  
+\(Required when lead belongs to contact and id is missing\)
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="sourceId" type="integer" required=false %}

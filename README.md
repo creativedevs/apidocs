@@ -26,5 +26,3 @@ Browse through the topics below to find exactly what you're looking for or check
 
 {% page-ref page="account/" %}
 
-{% page-ref page="partner/" %}
-

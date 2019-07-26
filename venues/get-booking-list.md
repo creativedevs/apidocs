@@ -43,12 +43,10 @@ The number of bookings to get in a single call
       "code": "HR5ZASGMQ1",
       "name": "Some Booking",
       "eventType": "Holiday",
-      "companyId": 4,
       "company": {
         "id": 4,
         "businessName": "Some Business"
       },
-      "contactId": 3,
       "contact": {
         "id": 3,
         "firstName": "Quamar",
@@ -56,7 +54,6 @@ The number of bookings to get in a single call
         "email": "faly@gmail.com",
         "phone": "+247-92-9848064"
       },
-      "isConfidential": false,
       "currentStatus": 3,
       "totalAmount": 105,
       "totalTaxAmount": 5,
@@ -70,12 +67,8 @@ The number of bookings to get in a single call
       "isAccommIncluded": true,
       "dateAccomStart": "2015-06-01 00:00:00 UTC",
       "dateAccomEnd": "2015-06-27 00:00:00 UTC",
-      "focRoomsDenominator": 5,
-      "maxNumFocRoomsPerDay: 2,
       "hasPackages": true,
       "decisionDate": "",
-      "canBeMoved": false,
-      "bookedById": 123,
       "isBeoFinalised": true,
       "beoFinalisedDate": "2015-02-09 03:37:39 UTC"
     }
