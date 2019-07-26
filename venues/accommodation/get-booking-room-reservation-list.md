@@ -1,9 +1,5 @@
 # Get Booking Room Reservation List
 
-**NOTE: This action has not been published**
-
-## Get Booking Room Reservation List
-
 {% api-method method="post" host="\[PlatformAddress\]/api/1.0/venue?action=getBookingRoomReservationList" path="" %}
 {% api-method-summary %}
 Get Booking Room Reservation List
@@ -40,7 +36,7 @@ The number of booking room reservations to fetch
 
 {% endapi-method-response-example-description %}
 
-```text
+```javascript
 {
     "meta": {
         "totalResults": 1,
@@ -61,10 +57,14 @@ The number of booking room reservations to fetch
                 "firstName": "Test1",
                 "lastName": "Com1",
                 "email": "test1.com1@somewhere.com",
-                "phone": "071234567890"
-            }
+                "phone": "071234567890",
+                "createdDate": "2018-08-17 14:51:35 UTC",
+                "modifiedDate": "2018-08-17 14:51:35 UTC"
+            },
             "primaryPhone": "071234567890",
             "address": null,
+            "createdDate": "2018-08-17 14:51:35 UTC",
+            "modifiedDate": "2018-08-17 14:51:35 UTC"
         },
         "currentStatus": 2,
         "isFromGroup": true,
@@ -80,10 +80,14 @@ The number of booking room reservations to fetch
                         "firstName": "Test1",
                         "lastName": "Com1",
                         "email": "test1.com1@somewhere.com",
-                        "phone": "071234567890"
-                    }
+                        "phone": "071234567890",
+                        "createdDate": "2018-08-17 14:51:35 UTC",
+                        "modifiedDate": "2018-08-17 14:51:35 UTC"
+                    },
                     "primaryPhone": "071234567890",
-                    "address": null
+                    "address": null,
+                    "createdDate": "2018-08-17 14:51:35 UTC",
+                    "modifiedDate": "2018-08-17 14:51:35 UTC"
                 },
                 "barId": 57,
                 "roomId": 14,
@@ -115,7 +119,8 @@ The number of booking room reservations to fetch
                         "barId": 57,
                         "cost": 175.00
                     }
-                ]
+                ],
+                "additionalGuests": []
             },
             {
                 "id": 124,
@@ -127,8 +132,10 @@ The number of booking room reservations to fetch
                         "firstName": "Test2",
                         "lastName": "Com2",
                         "email": "test2.com2@somewhere.com",
-                        "phone": ""
-                    }
+                        "phone": "",
+                        "createdDate": "2018-08-17 14:52:21 UTC",
+                        "modifiedDate": "2018-08-17 14:52:21 UTC"
+                    },
                     "primaryPhone": "070987654321",
                     "address": {
                         "line1": "123 Some Street",
@@ -140,7 +147,9 @@ The number of booking room reservations to fetch
                         "countryCode": "AU",
                         "stateCode": "QLD",
                         "stateName": ""
-                    }
+                    },
+                    "createdDate": "2018-08-17 14:52:21 UTC",
+                    "modifiedDate": "2018-08-17 14:52:21 UTC"
                 },
                 "barId": 57,
                 "roomId": 14,
@@ -156,11 +165,37 @@ The number of booking room reservations to fetch
                 "modifiedDate": "2018-08-17 14:52:21 UTC",
                 "isCancelled": false,
                 "cancelledDate": null,                
-                "dayRates": [{
-                    "date": "2018-09-02",
-                    "barId": 57,
-                    "cost": 200.00
-                }]
+                "dayRates": [
+                    {
+                        "date": "2018-09-02",
+                        "barId": 57,
+                        "cost": 200.00
+                    }
+                ],
+                "additionalGuests": [
+                    {
+                        "guestId": 601,
+                        "guest": {
+                            "id": 601,
+                            "contact": {
+                                "id": 800,
+                                "firstName": "Jane",
+                                "lastName": "Doe",
+                                "email": "Jane.Doe@test.com",
+                                "phone": "123654789",
+                                "createdDate": "2018-08-17 18:43:33 UTC",
+                                "modifiedDate": "2018-08-17 18:43:33 UTC"
+                            },
+                            "primaryPhone": "123654789",
+                            "address": null,
+                            "createdDate": "2018-08-17 18:43:33 UTC",
+                            "modifiedDate": "2018-08-17 18:43:33 UTC"
+                        },
+                        "arrivalDate": "2018-09-02",
+                        "departureDate": "2018-09-03",
+                        "guestType": 2
+                    }
+                ]
             }
         ]
     }]
@@ -171,15 +206,16 @@ The number of booking room reservations to fetch
 {% endapi-method-spec %}
 {% endapi-method %}
 
-The result from this call will be a [collection](../getting-started/interpreting-the-response/collections.md) of booking room reservation records the user has access to. This call also accepts the [pagination](../getting-started/interpreting-the-response/pagination.md) and [filter](../getting-started/interpreting-the-response/filtering.md) properties.
+The result from this call will be a [collection](../../getting-started/interpreting-the-response/collections.md) of booking room reservation records the user has access to. This call also accepts the [pagination](../../getting-started/interpreting-the-response/pagination.md) and [filter](../../getting-started/interpreting-the-response/filtering.md) properties.
 
-### Booking Room Reservation
+## Booking Room Reservation
 
 | Property | Type | Description |
 | :--- | :--- | :--- |
 | id | integer | The unique id of the booking room reservation |
 | venueId | integer | The unique id of the venue to which the booking belongs |
 | bookingId | integer | The unique id of the booking to which the room reservation belongs |
+| canBeEdited | boolean | Whether or not changes to the booking room reservation are allowed |
 | reference | integer | A unique reference assigned to the room reservation |
 | mainGuestId | integer | The unique id of the main guest of the reservation |
 | mainGuest | [Guest](get-booking-room-reservation-list.md#guest) | Details of the main guest of the room reservation |
@@ -191,15 +227,17 @@ The result from this call will be a [collection](../getting-started/interpreting
 | modifiedDate | datetime | The date & time the room reservation was last modified |
 | rooms | array of [Reserved Rooms](get-booking-room-reservation-list.md#reserved-room) | The details of the rooms that have been reserved |
 
-### Room Reservation Status
+## Room Reservation Status
 
 | Status | Description |
 | :--- | :--- |
 | 1 | Not confirmed |
 | 2 | Confirmed |
 | 3 | Cancelled |
+| 4 | Checked In |
+| 5 | Checked Out |
 
-### Reserved Room
+## Reserved Room
 
 | Property | Type | Description |
 | :--- | :--- | :--- |
@@ -221,8 +259,9 @@ The result from this call will be a [collection](../getting-started/interpreting
 | isCancelled | boolean | Whether or not the reserved room is cancelled |
 | cancelledDate | datetime | The date & time the reserved room was cancelled |
 | dayRates | array of [Day Rates](get-booking-room-reservation-list.md#reserved-room-day-rates) | The daily rates of the reserved room |
+| additionalGuests | array of [Additional Guests](get-booking-room-reservation-list.md#reserved-room-additional-guests) | The additional guests of the reserved room |
 
-### Reserved Room Day Rates
+## Reserved Room Day Rates
 
 | Property | Type | Description |
 | :--- | :--- | :--- |
@@ -230,22 +269,36 @@ The result from this call will be a [collection](../getting-started/interpreting
 | barId | integer | The unique id of the rate plan assigned to the dayDate of the reserved room. If the reserved room applies to an accommodation group \(see property _isFromGroup_ above\) then this will always be the room type assigned to the accommodation group |
 | cost | number | The rate amount for the reserved room on dayDate. The amount either includes or excludes tax depending on how the venue is configured |
 
-### Guest
+## Reserved Room Additional Guests
+
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| guestId | integer | The identifier of guest being updated on the reserved room |
+| guest | [Guest](get-booking-room-reservation-list.md#guest) | The additional guest details for the reserved room |
+| arrivalDate | date | The arrival date of the additional guest |
+| departureDate | date | The departure date of the additional guest |
+| guestType | enum | The sharing type of additional guest. See [Additional Guest Type](add-or-update-booking-room-reservation.md#additional-guest-type) |
+
+## Guest
 
 | Property | Type | Description |
 | :--- | :--- | :--- |
 | id | integer | The unique id of the venue guest |
 | contact | [Contact](get-booking-room-reservation-list.md#guest-contact-details) | The contact details of the guest |
 | primaryPhone | string | The primary phone number of the guest |
-| address | [Address](../development-reference/address-format.md) | The address of the guest |
+| address | [Address](../../development-reference/address-format.md) | The address of the guest |
+| createdDate | datetime | The date & time the venue guest was created |
+| modifiedDate | datetime | The date & time the venue guest was last modified |
 
-### Guest Contact Details
+## Guest Contact Details
 
 | Property | Type | Description |
 | :--- | :--- | :--- |
-| id | integer | The unique id of the [contact](../contact/get-contact.md) |
+| id | integer | The unique id of the [contact](../../contact/get-contact.md) |
 | firstName | string | The first name of the contact |
 | lastName | string | The last name of the contact |
 | email | string | The email address of the contact |
 | phone | string | The mobile phone number of the contact |
+| createdDate | datetime | The date & time the contact was created |
+| modifiedDate | datetime | The date & time the contact was last modified |
 
