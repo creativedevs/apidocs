@@ -63,6 +63,7 @@ The id of the booking
   "bookedById": 123,
   "isBeoFinalised": false,
   "beoFinalisedDate": "",
+  "otaFolioRef": "ven1234"
   "dailyRevenue": [
     {
       "costcenterId": 1276,
@@ -189,7 +190,8 @@ The id of the booking
           "id": 1,
           "tax": 4.545
         }
-      ]
+      ],
+      "totalAttendees": 2000,
     }
   ],
   "menus": [
@@ -217,7 +219,8 @@ The id of the booking
           "id": 1,
           "tax": 27.273
         }
-      ]
+      ],
+      "totalAttendees": 2000,
     }
   ],
   "beveragePackages": [
@@ -245,7 +248,8 @@ The id of the booking
           "id": 1,
           "tax": 190.909
         }
-      ]
+      ],
+      "totalAttendees": 2000,
     }
   ],
   "resources": [
@@ -664,7 +668,8 @@ The id of the booking
             "commission": 1.7
         }
     }],
-    "bookingType": 1
+    "bookingType": 1,
+    "opportunityId": 2,
   ]
 }
 ```
@@ -718,6 +723,7 @@ The result from this call will be the details of a specific booking to which the
 | bookedById | integer | The unique id of the event coordinator user assigned to the booking |
 | isBeoFinalised | boolean | Whether or not the BEO of the booking has been finalised |
 | beoFinalisedDate | [timestamp](../development-reference/timestamp-format.md) | The date & time on which the BEO of the booking was finalised |
+| otaFolioRef | string | The recorded Folio ID of a booking. |
 | dailyRevenue | Array of [DailyRevenue](get-booking.md#daily-revenue) | The daily revenue data of booking |
 | packages | Array of [Package](get-booking.md#package) | The list of packages of the booking |
 | sessions | Array of [Session](get-booking.md#session) | The list of sessions of booking |
@@ -737,6 +743,7 @@ The result from this call will be the details of a specific booking to which the
 | agent | Array of [Agent](get-booking.md#agent) | The details of the agent in the booking |
 | commissionByCostCentres | Array of [Commission By Cost Centres](get-booking.md#commission-by-cost-centres) | The commission amount by Cost Centres in the Booking |
 | bookingType | enum \([Booking Types](get-booking.md#get-booking.md#booking-types)\) | The type of Booking selected for the Booking |
+| opportunityId | integer | The id of the Opportunity for the Booking |
 
 ## Status
 
@@ -836,6 +843,7 @@ One of the following values:
 | createdDate | [timestamp](../development-reference/timestamp-format.md) | The date and time when the session was created |
 | modifiedDate | [timestamp](../development-reference/timestamp-format.md) | The date and time when the session was last modified |
 | taxDetails | Array of [Tax Detail](get-booking.md#tax-detail) | Individual tax details |
+| totalAttendees | integer | The minimum number of attendees for the Booking session |
 
 ## Menu
 
@@ -860,6 +868,7 @@ One of the following values:
 | totalAmount | double | The total amount of the menu including tax |
 | totalTaxAmount | double | The tax amount of the menu |
 | taxDetails | Array of [Tax Detail](get-booking.md#tax-detail) | Individual tax details |
+| totalAttendees | integer | The minimum number of attendees for the menu |
 
 ## Beverage Package
 
@@ -884,6 +893,7 @@ One of the following values:
 | totalAmount | double | The total amount of the beverage package including tax |
 | totalTaxAmount | double | The tax amount of the beverage package |
 | taxDetails | Array of [Tax Detail](get-booking.md#tax-detail) | Individual tax details |
+| totalAttendees | integer | The minimum number of attendees for the beverage package |
 
 ## Resource
 
